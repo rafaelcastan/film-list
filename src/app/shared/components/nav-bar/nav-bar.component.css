@@ -1,0 +1,53 @@
+.top-sidenav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+  }
+
+  .sidenav{
+    width: 20%;
+  }
+
+  /*Change toolbar colors*/
+  .mat-toolbar.mat-primary {
+    background: #000000;
+    color: rgb(202, 4, 4);
+  }
+   /*Change sidenav colors*/
+  .mat-sidenav{
+    background: #000000;
+    color: rgb(202, 4, 4);
+  }
+
+  .nav-list{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+    margin-left: 13%;
+  }
+
+  .nav-btn{
+    font-size: large;
+  }
+
+  @media screen and (max-width:830px){
+    .sidenav{
+      width: 40%;
+    }
+  }
+
+  @media screen and (max-width:440px){
+    .sidenav{
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width:280px){
+    .sidenav{
+      width: 70%;
+    }
+  }
