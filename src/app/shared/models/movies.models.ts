@@ -1,16 +1,16 @@
-export class MovieList {
-    public adult: boolean;
-    public backImage: string;
-    public genreId: string[];
-    public id: string;
-    public originalLanguage: string;
-    public originalTitle: string;
-    public overview: string;
-    public popularity: string;
-    public posterImage: string;
-    public releaseDate: string;
-    public title: string;
-    public haveVideo: boolean;
-    public score:string;
-    public scoreVote: string;
+export interface MovieList {
+    adult: boolean;
+    backImage: string;
+    genreId: number[];
+    id: number;
+    originalLanguage: string;
+    originalTitle: string;
+    overview: string;
+    popularity: number;
+    posterImage: string;
+    releaseDate: string;
+    title: string;
+    haveVideo: boolean;
+    score:number;
+    scoreVote: number;
 }
