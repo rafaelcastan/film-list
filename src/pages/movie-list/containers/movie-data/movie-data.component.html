@@ -1,0 +1,5 @@
+<div *ngIf="!(loading$ | async) && !(error$ | async) && !!MovieList">
+<mov-movie-list [MovieList]="MovieList"
+                (Scroll)="Scrolled()">
+</mov-movie-list>
+</div>

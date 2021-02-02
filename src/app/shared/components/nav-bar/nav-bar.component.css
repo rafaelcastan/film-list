@@ -14,12 +14,12 @@
   /*Change toolbar colors*/
   .mat-toolbar.mat-primary {
     background: #000000;
-    color: rgb(202, 4, 4);
+    color: rgb(5, 160, 199);
   }
    /*Change sidenav colors*/
   .mat-sidenav{
     background: #000000;
-    color: rgb(202, 4, 4);
+    color: rgb(5, 160, 199);
   }
 
   .nav-list{

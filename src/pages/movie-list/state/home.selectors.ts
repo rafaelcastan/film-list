@@ -1,10 +1,20 @@
-import { createFeatureSelector, createSelector, State } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 import { HomeState } from "./home.reducer";
 
-export const selectHomeState = createFeatureSelector<any>('home');
+export const selectHomeState = createFeatureSelector<HomeState>('home');
 
 export const loadMovies = createSelector(
     selectHomeState,
-    (HomeState:HomeState) => HomeState.entity,
+   (homestate:HomeState) => homestate.entity,
 );
+
+export const loadMoviesLoading = createSelector(
+    selectHomeState,
+    (homeState: HomeState) => homeState.loading,
+  );
+  
+  export const loadMoviesError = createSelector(
+    selectHomeState,
+    (homeState: HomeState) => homeState.error,
+  );

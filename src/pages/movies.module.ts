@@ -1,26 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { MovieListComponent } from '../pages/movie-list/movie-list.component';
+
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import {homeReducer} from './movie-list/state/home.reducer';
 import { HomeEffects } from './movie-list/state/home.effects';
+import { MovieDataComponent } from './movie-list/containers/movie-data/movie-data.component';
+import { MovieListComponent } from './movie-list/components/movie-list.component';
+
 
 
 
 @NgModule({
   declarations: [
-    MovieListComponent
+    MovieListComponent,
+    MovieDataComponent
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('home', {homeReducer}),
+    StoreModule.forFeature('home', homeReducer),
     EffectsModule.forFeature([HomeEffects]),
   ]
 })

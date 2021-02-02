@@ -7,7 +7,7 @@ export interface HomeState{
     error:boolean,
 }
 
-export const homeInitialState:HomeState={
+export const homeInitialState: HomeState={
     entity:undefined,
     loading:false,
     error:false,
@@ -25,13 +25,19 @@ const reducer = createReducer(
         entity,
         loading:false,
     })),
+    on(fromHomeActions.LoadMoreMoviesSuccess, (state,{entity})=>({
+        ...state,
+        entity:state.entity.concat(entity),
+        loading:false,
+    })),
     on(fromHomeActions.LoadMoviesFailed, (state)=>({
         ...state,
         loading:false,
         error:true,
     })),
+    on (fromHomeActions.clearHomeState, () => homeInitialState),
 );
 
-export function homeReducer(state:HomeState | undefined, action:Action) :HomeState{
+export function homeReducer(state:HomeState | undefined, action:Action):HomeState{
     return reducer(state,action);
 }

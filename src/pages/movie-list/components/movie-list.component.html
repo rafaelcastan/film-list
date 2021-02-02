@@ -1,0 +1,18 @@
+<div  class="home-content">
+  <mat-card class="home-card" *ngFor="let movie of MovieList | keyvalue; index as i ">
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>{{MovieList[i].title}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://image.tmdb.org/t/p/w500{{MovieList[i].backImage}}" alt="{{MovieList[i].title}}">
+    <mat-card-content>
+      <p class="quebrar-linha">
+       
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button color="accent" (click)="OnScroll('2')">Mais Informações</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

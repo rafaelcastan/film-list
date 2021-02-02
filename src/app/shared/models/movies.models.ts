@@ -14,3 +14,10 @@ export interface MovieList {
     score:number;
     scoreVote: number;
 }
+
+export interface MovieListResults{
+    [index: string]:any;
+    results:Array<MovieList>;
+    
+}
+

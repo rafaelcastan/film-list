@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MovieListComponent } from 'src/pages/movie-list/movie-list.component';
+
+import { MovieDataComponent } from 'src/pages/movie-list/containers/movie-data/movie-data.component';
 import { MoviesModule } from 'src/pages/movies.module';
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
     children: [
     {
       path: '',
-      component: MovieListComponent
+      component: MovieDataComponent
     }
     ]
 },

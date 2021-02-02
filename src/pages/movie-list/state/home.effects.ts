@@ -19,10 +19,24 @@ export class HomeEffects{
             this.store.dispatch(fromHomeActions.LoadMoviesFailed());
             return caught$;
         }),
-        map((entity) => fromHomeActions.LoadMoviesSuccess({entity})),
+        map((entity)  => fromHomeActions.LoadMoviesSuccess({entity})),
     ),
     );
 
+    loadMore$ = createEffect(()=> this.actions$
+    .pipe(
+        ofType(fromHomeActions.LoadMoreMovies),
+        mergeMap(({page}) => this.moviesService.getMovieListByPage(page)),
+        catchError((err,caught$)=>{
+            this.store.dispatch(fromHomeActions.LoadMoviesFailed());
+            return caught$;
+        }),
+        map((entity)  => fromHomeActions.LoadMoreMoviesSuccess({entity})),
+    ),
+    );
+    
+
+    
 
     constructor(private actions$:Actions,
                 private store:Store,
