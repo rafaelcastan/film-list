@@ -33,6 +33,27 @@
   .nav-btn{
     font-size: large;
   }
+  .header-toolbar{
+    display: flex;
+  }
+  .spacer{
+    flex: 1 1 auto;
+  }
+  .Language-selector-button{
+    align-self: center;
+  }
+
+  .mat-button-toggle{
+    color:white;
+    background-color: #272626;
+  }
+
+  .mat-button-toggle:hover{
+    background-color: rgb(5, 160, 199);
+  }
+  .mat-button-toggle-checked{
+    background-color:  rgb(5, 160, 199);
+  }
 
   @media screen and (max-width:830px){
     .sidenav{

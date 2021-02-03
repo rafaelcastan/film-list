@@ -5,22 +5,35 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </mat-toolbar>
+    <!--Opções sidenav-->
     <mat-nav-list class="nav-list">
-      <!--Opções sidenav-->
       <button class="nav-btn" type="button" mat-button>
         Lançamentos <mat-icon>fiber_new</mat-icon> 
       </button>
     </mat-nav-list>
+    <!--Opções sidenav-->
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="header-toolbar">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="openSideNav()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>FilmList</span>
+    <span>FilmList</span>
+    <span class="spacer"></span>
+      <!--language button-->
+    <div class="Language-selector-button">
+      <mat-button-toggle-group value="English">
+        <mat-button-toggle  (click)="languageChose(languageChosed.English)"  value="English">
+          English
+        </mat-button-toggle>
+        <mat-button-toggle (click)="languageChose(languageChosed.Portuguese)"  value="Portuguese">
+          Portuguese
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+       <!--language button-->
     </mat-toolbar>
-
-    <div class="app-content"></div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 

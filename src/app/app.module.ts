@@ -16,6 +16,7 @@ import { MoviesModule } from 'src/pages/movies.module';
 import { MaterialModule } from './shared/material/material.module';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { environment } from '../environments/environment';
+import { reducers } from './shared/state/app.reducer';
 
 
 @NgModule({
@@ -31,10 +32,10 @@ import { environment } from '../environments/environment';
     MoviesModule,
     MaterialModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue:'pt'}],
   bootstrap: [AppComponent]

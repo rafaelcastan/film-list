@@ -23,8 +23,7 @@ export class MovieDataComponent implements OnInit {
   private componentDestroyed$ = new Subject();
 
   constructor(private store: Store,
-              private appRef: ApplicationRef,
-              private injector: Injector) { }
+             ) { }
 
   ngOnInit()  {
     this.page=1;

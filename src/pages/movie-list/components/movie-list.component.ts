@@ -1,10 +1,10 @@
-import { NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { MovieList, MovieListResults } from 'src/app/shared/models/movies.models';
 
-import * as fromHomeAction from '../state/home.action';
+import { MovieListResults } from 'src/app/shared/models/movies.models';
+
+
 
 @Component({
   selector: 'mov-movie-list',
@@ -17,16 +17,19 @@ export class MovieListComponent implements OnInit {
 
   @Input() MovieList!:MovieListResults;
   @Output() Scroll = new EventEmitter();
-  
+  selector: string = '.mat-sidenav-container';
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-       console.log(this.MovieList)
   }
   
   
-  OnScroll(page:string) {
+  onScroll() {
     this.Scroll.emit();
   } 
 
+  alert()
+  {
+    alert("Not Implemented");
+  }
 }

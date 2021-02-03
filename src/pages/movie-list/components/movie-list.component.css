@@ -1,25 +1,61 @@
 .home-content {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     width: calc(100% - 20px);
     justify-content: space-between;
-     padding: 10px;
+    padding: 10px;
+    background-color: rgb(75, 74, 74);
+    height: 100%;
+    
 }
-    .home-card {
-      margin-bottom: 10px;
-  
-    }
-  
-  .mat-card-image {
-    width: 300px;
-    height: 268px;
-    margin: auto;
-    display: block;
-  }
-  
+.home-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: rgb(53, 53, 53);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-card-title{
+  color:silver;
+  text-align: center;
+}
+
+.buttons{
+  align-self:flex-end;
+}
+
+.button-details{
+  background-color:silver;
+}
+.button-details:hover{
+  background-color: rgb(5, 182, 182);
+}
+
+.mat-card-image {
+  width: 300px;
+  height: 268px;
+  margin: auto;
+  display: block;
+}
+
+.description{
+  max-width: 500px;
+  margin-top: 10px;
+  overflow: hidden;
+  color:silver;
+  text-justify: auto;
+  text-overflow: ellipsis; 
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+}
 
 /*recoursive*/
-  @media screen and (min-width: 525px) {
+
+
+  @media screen and (min-width: 642px) {
     .home-content 
       .home-card {
         width: calc(50% - 52px);
@@ -27,7 +63,7 @@
     
   }
   
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 950px) {
     .home-content 
       .home-card {
         width: calc(33.333% - 52px);
@@ -40,5 +76,24 @@
         .home-card {
           width: calc(25% - 52px);
         }
+    }
+
+    @media screen and (max-width: 1080px) {
+      .mat-card-image {
+        width: 260px;
+        height: 228px;
+        }
+    }
+    
+    @media screen and (max-width: 280px) {
+      .home-content 
+        .home-card {
+          width: calc(100% - 30px);
+        }
+        .mat-card-image {
+          width: 230px;
+          height: 200px;
+          }
+       
       
     }

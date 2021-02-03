@@ -1,20 +1,41 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { MovieList, MovieListResults } from '../models/movies.models';
+import { Language } from '../models/language.enum';
+import { MovieListResults } from '../models/movies.models';
 import { responseToMovieList } from '../utils/response.utils';
+import * as fromConfigSelectors from '../state/config/config.selector'
+import { ConfigState } from '../state/config/config.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesService {
+export class MoviesService implements OnDestroy{
 
-  constructor(private http: HttpClient) { 
+  private language!: Language;
+
+  private serviceDestroyed$ = new Subject();
+
+  constructor(private http: HttpClient,
+              private store: Store<ConfigState>) { 
+    store
+      .pipe(
+        select(fromConfigSelectors.selectUnitConfig),
+        takeUntil(this.serviceDestroyed$),
+      )
+      .subscribe((language: Language) => this.language = language);
   }
+
+  ngOnDestroy() {
+    this.serviceDestroyed$.next();
+    this.serviceDestroyed$.unsubscribe();
+  }
+  
 
   getMovieListByPage(page: string): Observable<MovieListResults> {
     const params = new HttpParams({ fromObject: { page: page } });
@@ -28,7 +49,7 @@ export class MoviesService {
   }
   private  doGet<T>(url:string, params: HttpParams):Observable<any[]>{
     params = params.append('api_key', environment.ApiKey);
-    params = params.append('language','pt_BR')
+    params = params.append('language',this.language)
     return this.http.get<any[]>(`https://api.themoviedb.org/3${ url }`,{params});
   }
 }

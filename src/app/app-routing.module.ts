@@ -8,21 +8,33 @@ import { MoviesModule } from 'src/pages/movies.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'filmes',
+    redirectTo: 'filmes/en-US',
     pathMatch: 'full'
 },
+  {path: 'filmes',
+  redirectTo: 'filmes/en-US',
+},
+
 {
     path: 'filmes',
     children: [
     {
       path: '',
       component: MovieDataComponent
+    },
+    {
+      path: 'pt-BR',
+      component: MovieDataComponent
+    },
+    {
+      path: 'en-US',
+      component: MovieDataComponent
     }
     ]
 },
 { 
     path: '**', 
-    redirectTo: 'filmes' },
+    redirectTo: 'filmes/en-US' },
 ];
 
 @NgModule({
