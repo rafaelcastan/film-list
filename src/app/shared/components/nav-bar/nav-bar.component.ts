@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
+import {Observable, Subject} from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import * as fromConfigActions from 'src/app/shared/state/config/config.actions'
+import * as fromConfigSelectors from 'src/app/shared/state/config/config.selector'
 import { Language } from '../../models/language.enum';
 
 @Component({
@@ -15,13 +17,21 @@ import { Language } from '../../models/language.enum';
 
 export class NavBarComponent implements OnInit {
   @ViewChild('sidenav', {static: false}) sidenav!: MatSidenav;
+  languageOB$!: Observable<Language>;
+  languageSelected!: Language;
 
-  languageChosed = Language;
+  private componentDestroyed$ = new Subject();
   constructor(private store: Store,
-              private router: Router) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.languageOB$ = this.store.select(fromConfigSelectors.selectLanguageConfig);
+    this.languageOB$
+    .pipe(takeUntil(this.componentDestroyed$))
+    .subscribe(value => this.languageSelected=value);
 
+  }
 
   openSideNav() {
     this.sidenav.open();
@@ -31,8 +41,12 @@ export class NavBarComponent implements OnInit {
     this.sidenav.close();
   }
 
-  languageChose(language:Language){
-    this.store.dispatch(fromConfigActions.updateLanguage({language}));
-    this.router.navigateByUrl('/filmes/'+language.toString());
+  ngOnDestroy() {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.unsubscribe();
+  }
+
+  homePage(){
+    this.router.navigateByUrl('/filmes/'+this.languageSelected.toString());
   }
 }

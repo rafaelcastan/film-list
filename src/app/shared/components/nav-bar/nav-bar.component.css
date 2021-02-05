@@ -32,6 +32,7 @@
 
   .nav-btn{
     font-size: large;
+    margin-bottom: 2px;
   }
   .header-toolbar{
     display: flex;
@@ -39,20 +40,16 @@
   .spacer{
     flex: 1 1 auto;
   }
-  .Language-selector-button{
-    align-self: center;
-  }
+  
 
-  .mat-button-toggle{
-    color:white;
-    background-color: #272626;
+  .mat-icon{
+    margin-right: 10px;
   }
-
-  .mat-button-toggle:hover{
-    background-color: rgb(5, 160, 199);
+  .FilmList{
+    font-size: 25px;
   }
-  .mat-button-toggle-checked{
-    background-color:  rgb(5, 160, 199);
+  .FilmList:hover{
+    cursor:pointer;
   }
 
   @media screen and (max-width:830px){

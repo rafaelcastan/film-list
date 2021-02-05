@@ -7,8 +7,8 @@ import {map, takeUntil} from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Language } from '../models/language.enum';
-import { MovieListResults } from '../models/movies.models';
-import { responseToMovieList } from '../utils/response.utils';
+import { MovieDetailsModel, MovieList, MovieListResults } from '../models/movies.models';
+import { responseToMovieDetails, responseToMovieList } from '../utils/response.utils';
 import * as fromConfigSelectors from '../state/config/config.selector'
 import { ConfigState } from '../state/config/config.reducer';
 
@@ -25,7 +25,7 @@ export class MoviesService implements OnDestroy{
               private store: Store<ConfigState>) { 
     store
       .pipe(
-        select(fromConfigSelectors.selectUnitConfig),
+        select(fromConfigSelectors.selectLanguageConfig),
         takeUntil(this.serviceDestroyed$),
       )
       .subscribe((language: Language) => this.language = language);
@@ -47,9 +47,21 @@ export class MoviesService implements OnDestroy{
       })
     );
   }
-  private  doGet<T>(url:string, params: HttpParams):Observable<any[]>{
+
+  getMovieDetails(id: string): Observable<MovieDetailsModel> {
+    const params = new HttpParams({ fromObject: { '' : '' } });
+    return this.doGet('/movie/'+id, params).pipe(
+      map((results) => {
+        const Filmlist = results.map((result: any) => responseToMovieDetails(result));
+        console.log(Filmlist)
+        return Filmlist;        
+      })
+    );
+  }
+
+  private  doGet<T>(url:string, params: HttpParams):Observable<any>{
     params = params.append('api_key', environment.ApiKey);
     params = params.append('language',this.language)
-    return this.http.get<any[]>(`https://api.themoviedb.org/3${ url }`,{params});
+    return this.http.get<any>(`https://api.themoviedb.org/3${ url }`,{params});
   }
 }

@@ -13,6 +13,10 @@ import {homeReducer} from './movie-list/state/home.reducer';
 import { HomeEffects } from './movie-list/state/home.effects';
 import { MovieDataComponent } from './movie-list/containers/movie-data/movie-data.component';
 import { MovieListComponent } from './movie-list/components/movie-list.component';
+import { LanguageSelectorComponent } from './movie-list/containers/language/language-selector/language-selector.component';
+import { MovieDetailsComponent } from './movie-details/container/movie-details.component';
+import { detailsReducer } from './movie-details/state/movie-details.reducer';
+import { MovieDetailsEffects } from './movie-details/state/movie-details.effects';
 
 
 
@@ -20,7 +24,9 @@ import { MovieListComponent } from './movie-list/components/movie-list.component
 @NgModule({
   declarations: [
     MovieListComponent,
-    MovieDataComponent
+    MovieDataComponent,
+    LanguageSelectorComponent,
+    MovieDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +34,9 @@ import { MovieListComponent } from './movie-list/components/movie-list.component
     MaterialModule,
     ReactiveFormsModule,
     StoreModule.forFeature('home', homeReducer),
+    StoreModule.forFeature('Movie Details', detailsReducer),
     EffectsModule.forFeature([HomeEffects]),
+    EffectsModule.forFeature([MovieDetailsEffects]),
     InfiniteScrollModule,
   ]
 })
