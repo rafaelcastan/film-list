@@ -13,10 +13,10 @@ import {homeReducer} from './movie-list/state/home.reducer';
 import { HomeEffects } from './movie-list/state/home.effects';
 import { MovieDataComponent } from './movie-list/containers/movie-data/movie-data.component';
 import { MovieListComponent } from './movie-list/components/movie-list.component';
-import { LanguageSelectorComponent } from './movie-list/containers/language/language-selector/language-selector.component';
 import { MovieDetailsComponent } from './movie-details/container/movie-details.component';
 import { detailsReducer } from './movie-details/state/movie-details.reducer';
 import { MovieDetailsEffects } from './movie-details/state/movie-details.effects';
+import { Language } from 'src/app/shared/models/language.enum';
 
 
 
@@ -25,7 +25,6 @@ import { MovieDetailsEffects } from './movie-details/state/movie-details.effects
   declarations: [
     MovieListComponent,
     MovieDataComponent,
-    LanguageSelectorComponent,
     MovieDetailsComponent,
   ],
   imports: [
@@ -38,6 +37,7 @@ import { MovieDetailsEffects } from './movie-details/state/movie-details.effects
     EffectsModule.forFeature([HomeEffects]),
     EffectsModule.forFeature([MovieDetailsEffects]),
     InfiniteScrollModule,
-  ]
+  ],
+  exports:[MovieDataComponent,MovieListComponent],
 })
 export class MoviesModule { }

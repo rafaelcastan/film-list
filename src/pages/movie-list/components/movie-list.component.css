@@ -58,19 +58,7 @@
   flex-direction: row-reverse;
 }
 
-.mat-button-toggle{
-  font-size: 18px;
-  align-self: center;
-  color:white;
-  background-color: #272626;
-}
 
-.mat-button-toggle:hover{
-  background-color: rgb(5, 160, 199);
-}
-.mat-button-toggle-checked{
-  background-color:  rgb(5, 160, 199);
-}
 
 /*recoursive*/
 

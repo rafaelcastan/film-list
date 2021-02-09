@@ -5,6 +5,8 @@
     left: 0;
     right: 0;
     background: #eee;
+    justify-content: space-between;
+    
   }
 
   .sidenav{
@@ -36,7 +38,13 @@
   }
   .header-toolbar{
     display: flex;
+    position:sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
   }
+
   .spacer{
     flex: 1 1 auto;
   }
@@ -55,6 +63,12 @@
   @media screen and (max-width:830px){
     .sidenav{
       width: 40%;
+    }
+  }
+
+  @media screen and (max-width:960px){
+    .sidenav{
+      width: 40%
     }
   }
 

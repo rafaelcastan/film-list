@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,23 +7,28 @@ import {Observable, Subject} from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import * as fromConfigSelectors from 'src/app/shared/state/config/config.selector'
-import { Language } from '../../models/language.enum';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
+  changeDetection:ChangeDetectionStrategy.Default
 })
 
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, OnChanges {
   @ViewChild('sidenav', {static: false}) sidenav!: MatSidenav;
-  languageOB$!: Observable<Language>;
-  languageSelected!: Language;
+  languageOB$!: Observable<string>;
+  languageSelected!: string;
+
+  configBtn!:boolean;
+
+  id!:string;
+
+  languageRender!:string;
 
   private componentDestroyed$ = new Subject();
   constructor(private store: Store,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private router: Router) { }
 
   ngOnInit() { 
     this.languageOB$ = this.store.select(fromConfigSelectors.selectLanguageConfig);
@@ -31,10 +36,17 @@ export class NavBarComponent implements OnInit {
     .pipe(takeUntil(this.componentDestroyed$))
     .subscribe(value => this.languageSelected=value);
 
+    this.languageRender='en-US';
+
   }
 
+  ngOnChanges(){
+    console.log(this.configBtn)
+  }
+  
   openSideNav() {
     this.sidenav.open();
+    this.languageRender=this.languageSelected;
   }
 
   closeSideNav() {
@@ -47,6 +59,6 @@ export class NavBarComponent implements OnInit {
   }
 
   homePage(){
-    this.router.navigateByUrl('/filmes/'+this.languageSelected.toString());
+    this.router.navigateByUrl('/filmes/'+this.languageSelected);
   }
 }

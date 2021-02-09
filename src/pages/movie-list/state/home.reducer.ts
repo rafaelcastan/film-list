@@ -5,12 +5,14 @@ export interface HomeState{
     entity:any,
     loading:boolean,
     error:boolean,
+    loadingMore:boolean,
 }
 
 export const homeInitialState: HomeState={
     entity:undefined,
     loading:false,
     error:false,
+    loadingMore:false
 }
 
 const reducer = createReducer(
@@ -25,14 +27,18 @@ const reducer = createReducer(
         entity,
         loading:false,
     })),
+    on(fromHomeActions.LoadMoreMovies, state=>({
+        ...state,
+        loadingMore:true,
+        error:false,
+    })),
     on(fromHomeActions.LoadMoreMoviesSuccess, (state,{entity})=>({
         ...state,
+        loadingMore:false,
         entity:state.entity.concat(entity),
-        loading:false,
     })),
     on(fromHomeActions.LoadMoviesFailed, (state)=>({
         ...state,
-        loading:false,
         error:true,
     })),
     on (fromHomeActions.clearHomeState, () => homeInitialState),

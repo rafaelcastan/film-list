@@ -10,44 +10,30 @@ import { MovieDetailsComponent } from 'src/pages/movie-details/container/movie-d
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'filmes/en-US',
+    redirectTo: 'filmes/L',
     pathMatch: 'full'
 },
-  {
-    path: 'filmes',
-    redirectTo: 'filmes/en-US',
-},
 {
-  path: 'filmes/details',
-    redirectTo: 'filmes/en-US',
+  path:'filmes',
+  redirectTo:'filmes/L'
 },
 {
     path: 'filmes',
     children: [
     {
-      path: '',
-      component: MovieDataComponent
-    },
-
-    {
-      path: 'pt-BR',
-      component: MovieDataComponent
-    },
-    {
-      path: 'en-US',
-      component: MovieDataComponent
-    },
-    {
       path: 'details',
       children:[{path: ':id',component: MovieDetailsComponent}]
+    },
+    {
+      path:':language',
+      component: MovieDataComponent,
     },
     ]
 },
 
-
 { 
     path: '**', 
-    redirectTo: 'filmes/en-US' },
+    redirectTo: 'filmes/L' },
 ];
 
 @NgModule({

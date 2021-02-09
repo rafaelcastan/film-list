@@ -16,6 +16,7 @@ export interface MovieList {
 }
 
 export interface MovieListResults{
+    [index: string]:any;
     results:Array<MovieList>;
     
 }

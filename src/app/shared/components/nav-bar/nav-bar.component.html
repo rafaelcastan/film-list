@@ -10,14 +10,13 @@
     <mat-nav-list class="nav-list">
       <button class="nav-btn" type="button" mat-button (click)="homePage()">
         <mat-icon>home</mat-icon> 
-        <span *ngIf="languageSelected=='en-US'" >Home</span> 
-        <span *ngIf="languageSelected=='pt-BR'" >Inicio</span>
+        <span *ngIf="languageRender=='en-US'" >Home</span> 
+        <span *ngIf="languageRender=='pt-BR'" >Inicio</span>
       </button>
       <button class="nav-btn" type="button" mat-button>
         <mat-icon>fiber_new</mat-icon> 
-        <span *ngIf="languageSelected=='en-US'">Releases</span> 
-        <span *ngIf="languageSelected=='pt-BR'">Lançamentos</span>
-
+        <span *ngIf="languageRender=='en-US'">Releases</span> 
+        <span *ngIf="languageRender=='pt-BR'">Lançamentos</span>
       </button>
     </mat-nav-list>
     <!--Opções sidenav-->
@@ -30,7 +29,11 @@
       </button>
     <span class="FilmList" (click)="homePage()">FilmList</span>
     <span class="spacer"></span>
+    <!--config here-->
+    <app-config-btn></app-config-btn>
+    <!--Until here-->
     </mat-toolbar>
     <router-outlet></router-outlet>
+    
   </mat-sidenav-content>
 </mat-sidenav-container>

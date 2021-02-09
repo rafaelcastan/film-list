@@ -1,8 +1,8 @@
 <div *ngIf="!(loading$ | async) && !(error$ | async) && !!MovieList" id="teste">
 <mov-movie-list [MovieList]="MovieList"
                 [languageSelected]="languageSelected"
+                [loadingMovies]="loadingMore"
                 (Scroll)="Scrolled()"
-                (languageSelect)="languageChose($event)"
                 >
 </mov-movie-list>
 </div>

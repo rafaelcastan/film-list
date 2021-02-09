@@ -17,7 +17,7 @@ import { ConfigState } from '../state/config/config.reducer';
 })
 export class MoviesService implements OnDestroy{
 
-  private language!: Language;
+  private language!: string;
 
   private serviceDestroyed$ = new Subject();
 
@@ -28,7 +28,7 @@ export class MoviesService implements OnDestroy{
         select(fromConfigSelectors.selectLanguageConfig),
         takeUntil(this.serviceDestroyed$),
       )
-      .subscribe((language: Language) => this.language = language);
+      .subscribe((language: string) => this.language = language);
   }
 
   ngOnDestroy() {
@@ -52,7 +52,7 @@ export class MoviesService implements OnDestroy{
     const params = new HttpParams({ fromObject: { '' : '' } });
     return this.doGet('/movie/'+id, params).pipe(
       map((results) => {
-        const Filmlist = results.map((result: any) => responseToMovieDetails(result));
+        const Filmlist = responseToMovieDetails(results);
         console.log(Filmlist)
         return Filmlist;        
       })

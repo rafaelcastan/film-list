@@ -25,7 +25,7 @@ export function responseToMovieList(response: any): MovieList {
       backImage: response.backdrop_path,
       collection:response.belongs_to_collection,
       budget:response.budget,
-      genres:response.genres.map((d: { id: any; name: any; }) =>({
+      genres:response.genres.map((d: any) =>({
         id: d.id,
         name:d.name
       })), 
@@ -37,18 +37,18 @@ export function responseToMovieList(response: any): MovieList {
       overview: response.overview,
       popularity: response.popularity,
       posterImage: response.poster_path,
-      production_companies:response.production_companies.map((d: { id: any; logo_path: any; })=>({
+      production_companies:response.production_companies.map((d:any)=>({
         id: d.id,
         image:d.logo_path,
       })),
-      production_countries:response.production_countries.map((d: { iso_3166_1: any; name: any; })=>({
+      production_countries:response.production_countries.map((d:any)=>({
         iso:d.iso_3166_1,
         name:d.name,
       })),
       releaseDate: response.release_date,
       revenue:response.revenue,
       runtime:response.runtime,
-      spoken_languages:response.spoken_languages.map((d: { english_name: any; iso_639_1: any; name: any; })=>({
+      spoken_languages:response.spoken_languages.map((d:any)=>({
         englishName:d.english_name,
         iso:d.iso_639_1,
         name:d.name,

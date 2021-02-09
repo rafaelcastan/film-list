@@ -14,6 +14,11 @@ export const loadMoviesLoading = createSelector(
     (homeState: HomeState) => homeState.loading,
   );
   
+  export const loadMoreMoviesLoading = createSelector(
+    selectHomeState,
+    (homeState: HomeState) => homeState.loadingMore,
+  );
+
   export const loadMoviesError = createSelector(
     selectHomeState,
     (homeState: HomeState) => homeState.error,

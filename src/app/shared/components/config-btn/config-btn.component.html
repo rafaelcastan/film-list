@@ -1,0 +1,15 @@
+<button mat-button [matMenuTriggerFor]="menu" (click)=setLanguage()><mat-icon>settings</mat-icon></button>
+<mat-menu #menu="matMenu">
+  <div class="Language-selector-bar">
+    <mat-button-toggle-group  value='{{languageSelected}}'>
+      <mat-button-toggle  (click)="languageChose(languageChosed.English)"  value="en-US">
+        <span *ngIf="languageSelected=='en-US'">English</span>
+        <span *ngIf="languageSelected=='pt-BR'">Inglês</span>
+      </mat-button-toggle>
+      <mat-button-toggle (click)="languageChose(languageChosed.Portuguese)" value="pt-BR">
+        <span *ngIf="languageSelected=='en-US'">Portuguese</span>
+        <span *ngIf="languageSelected=='pt-BR'">Português</span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</mat-menu>

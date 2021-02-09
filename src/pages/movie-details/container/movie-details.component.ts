@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 import {Observable, Subject} from 'rxjs';
@@ -25,7 +25,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   private componentDestroyed$ = new Subject();
 
   constructor( private activatedRoute: ActivatedRoute,
-               private store: Store) { }
+               private store: Store,
+               private router: Router) { }
 
   ngOnInit(): void {
     
@@ -33,6 +34,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.Details$
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(value => this.MovieDetails=value);
+
+    this.error$=this.store.select(fromMovieDetailsSelectors.LoadDetailsError);
+    this.loading$=this.store.select(fromMovieDetailsSelectors.LoadDetailsLoading);
 
     this.id = this.activatedRoute.snapshot.params['id'];
     this.store.dispatch(fromMovieDetailsActions.LoadDetails({id:this.id}));

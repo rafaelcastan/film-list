@@ -1,14 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { Language } from '../../models/language.enum';
+
 import * as fromLanguageActions from './config.actions';
 
 export interface ConfigState {
-    language: Language;
+    language: string;
 }
 
 export const configInitialState: ConfigState = {
-    language: Language.English,
+    language: 'en-US',
 }
 
 export const configReducer = createReducer(
