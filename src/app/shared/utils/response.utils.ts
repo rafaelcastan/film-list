@@ -40,6 +40,7 @@ export function responseToMovieList(response: any): MovieList {
       production_companies:response.production_companies.map((d:any)=>({
         id: d.id,
         image:d.logo_path,
+        name:d.name,
       })),
       production_countries:response.production_countries.map((d:any)=>({
         iso:d.iso_3166_1,

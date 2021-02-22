@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 import {Observable, Subject} from 'rxjs';
@@ -38,6 +38,7 @@ export class NavBarComponent implements OnInit, OnChanges {
 
     this.languageRender='en-US';
 
+    
   }
 
   ngOnChanges(){
@@ -59,6 +60,15 @@ export class NavBarComponent implements OnInit, OnChanges {
   }
 
   homePage(){
+    if(this.router.url.includes('/filmes/'+this.languageSelected)){
+      const x = document.querySelector('mat-sidenav-content')
+      x!.scroll({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    else{
     this.router.navigateByUrl('/filmes/'+this.languageSelected);
+    }
   }
 }

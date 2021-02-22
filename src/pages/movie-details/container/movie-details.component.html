@@ -1,3 +1,6 @@
-<div *ngIf="!(loading$ | async) && !(error$ | async) && !!MovieDetails">
-    <span>{{MovieDetails.title}}</span>
-</div>
+<div *ngIf="!(loading$ | async) && !(error$ | async) && !!MovieDetails" id="teste">
+    <mov-movie-detailed [MovieDetails]="MovieDetails"
+                    [languageSelected]="languageSelected"
+                    >
+    </mov-movie-detailed>
+    </div>

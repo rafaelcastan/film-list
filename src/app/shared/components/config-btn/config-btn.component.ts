@@ -23,6 +23,7 @@ export class ConfigBtnComponent implements OnInit {
   languageChosed = Language;
 
   url!:string;
+  enteredUrl!:string;
 
   private componentDestroyed$ = new Subject();
 
@@ -34,6 +35,8 @@ export class ConfigBtnComponent implements OnInit {
     this.languageOB$
     .pipe(takeUntil(this.componentDestroyed$))
     .subscribe(value => this.languageConfig=value);
+
+    this.enteredUrl=window.location.href;
   }
 
   ngOnDestroy() {
@@ -45,15 +48,20 @@ export class ConfigBtnComponent implements OnInit {
     this.url=this.router.url
     if(!this.url.includes('/filmes/details')){
     this.store.dispatch(fromConfigActions.updateLanguage({language}));
-    this.router.navigateByUrl('/filmes/'+language);
+    this.reload('/filmes/'+language);
     }
     else{
       this.store.dispatch(fromConfigActions.updateLanguage({language}));
-      this.router.navigateByUrl(this.url)
+      this.reload(this.url)
     }
   }
 
   setLanguage(){
     this.languageSelected=this.languageConfig;
+  }
+
+  async reload(url: string): Promise<boolean> {
+    await this.router.navigateByUrl('.', { skipLocationChange: true });
+    return this.router.navigateByUrl(url);
   }
 }

@@ -57,6 +57,7 @@ export interface genres{
 export interface companies{
     id:number;
     image:string
+    name:string;
 }
 
 export interface countries{

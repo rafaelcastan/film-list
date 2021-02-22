@@ -17,6 +17,7 @@ import { MovieDetailsComponent } from './movie-details/container/movie-details.c
 import { detailsReducer } from './movie-details/state/movie-details.reducer';
 import { MovieDetailsEffects } from './movie-details/state/movie-details.effects';
 import { Language } from 'src/app/shared/models/language.enum';
+import { MovieDetailedComponent } from './movie-details/components/movie-detailed/movie-detailed.component';
 
 
 
@@ -26,6 +27,7 @@ import { Language } from 'src/app/shared/models/language.enum';
     MovieListComponent,
     MovieDataComponent,
     MovieDetailsComponent,
+    MovieDetailedComponent,
   ],
   imports: [
     CommonModule,

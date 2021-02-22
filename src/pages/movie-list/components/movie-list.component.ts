@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -15,7 +15,7 @@ import { MovieListResults } from 'src/app/shared/models/movies.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
   
 })
-export class MovieListComponent implements OnInit, OnChanges {
+export class MovieListComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() MovieList!:MovieListResults;
   @Input() languageSelected!:string;
@@ -23,7 +23,10 @@ export class MovieListComponent implements OnInit, OnChanges {
 
   @Output() Scroll = new EventEmitter();
 
-  languageChosed = Language;
+  showInfo!:boolean;
+  position!:number;
+
+  mySubscription:any;
 
   selector: string = '.mat-sidenav-container';
   constructor(private store: Store,
@@ -31,6 +34,7 @@ export class MovieListComponent implements OnInit, OnChanges {
               private changeDetection: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.showInfo=false;
   }
   
   onScroll() {
@@ -42,7 +46,7 @@ export class MovieListComponent implements OnInit, OnChanges {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.router.events.subscribe((event) => {
+    this.mySubscription=this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Trick the Router into believing it's last link wasn't previously loaded
         this.router.navigated = false;
@@ -50,9 +54,14 @@ export class MovieListComponent implements OnInit, OnChanges {
     });
   }
 
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
+
   info(id: number)
   {
     this.router.navigateByUrl('/filmes/details/'+id);
   }
-  
 }

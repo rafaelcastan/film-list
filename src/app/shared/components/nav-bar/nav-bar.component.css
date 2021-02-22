@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .top-sidenav {
     position: absolute;
     top: 0;
