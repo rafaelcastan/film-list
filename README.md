@@ -1,6 +1,7 @@
 # FilmList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
+This project was made for studies porpuses using Angular 11 and Angular Material.
+This project uses MovieDB API to get a list of films and list them.
 
 ## Development server
 
